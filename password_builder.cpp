@@ -22,30 +22,26 @@ std::string PasswordBuilder::GeneratePassword(std::string salt) const {
 
     }
     return result;
+}
 
+void PasswordBuilder::SetRandomStringLength(size_t size){
+    random_string_length_ = size;
+}
 
-    //if(password_size_ > 44) // пока используем данный костыль так как максимальная длина сгенерированного пароля 44 байта
-    //    return {};
-
-    //const std::string random_str = GenerateRandomString(RANDOM_STRING_LENGTH);
-
-//std::string result = random_str + md5(salt); // md5-hath equal 32 bit
-//std::random_shuffle(result.begin(),result.end());
-
-//return {result.begin(),result.begin() + password_size_};
+size_t PasswordBuilder::GetRandomStringLength() const{
+    return random_string_length_;
 }
 
 std::string PasswordBuilder::GenerateAndShuffle(std::string salt) const{
 
-if(password_size_ > 44) // пока используем данный костыль так как максимальная длина сгенерированного пароля 44 байта
+if(password_size_ > random_string_length_ + 32) // 32 - length of hash string;
     return {};
 
-const std::string random_str = GenerateRandomString(RANDOM_STRING_LENGTH);
+const std::string random_str = GenerateRandomString(random_string_length_);
 
 std::string result = random_str + md5(salt); // md5-hath equal 32 bit
 std::random_shuffle(result.begin(),result.end());
 
 return {result.begin(),result.begin() + password_size_};
-
 }
 }

@@ -23,20 +23,29 @@ void TestOpenFile(){
 void TestReadRandomStringSize(){
     using namespace std::literals;
     config_reader::FileConfigReader conf_reader("config.ini"s);
-    std::string res = conf_reader.GetRandomStringLength();
+    std::string res = *conf_reader.GetRandomStringLength();
     assert(res == "20"s);
     std::cout << "Is ok"s <<std::endl;
 
 }
+
+void TestSetRandomStringSize(){
+    using namespace std::literals;
+    config_reader::FileConfigReader conf_reader("config.ini"s);
+    password::PasswordBuilder builder(30);
+    conf_reader.SetOptions(builder);
+    assert(builder.GetRandomStringLength() == 20);
+    std::cout << "TestSetRandomStringSize is OK"s <<std::endl;
 }
+}
+
 using namespace std;
 
 int main(int argc, char *argv[]){
 
 test::TestOpenFile();
-
 test::TestReadRandomStringSize();
-
+test::TestSetRandomStringSize();
     //    if(argc != 3){
 //        std::cout << "Incorrect number of characters entered, enter the password length and salt"s << std::endl;
 //        return 1;

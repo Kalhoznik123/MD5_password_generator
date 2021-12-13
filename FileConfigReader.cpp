@@ -13,15 +13,32 @@ bool FileConfigReader::IsLoaded() const{
     return !(rc_ < 0);
 }
 
-std::string FileConfigReader::GetRandomStringLength() const{
-    using namespace std::literals;
+std::optional<std::string> FileConfigReader::GetRandomStringLength() const{
+    using namespace std::literals; //TODO: add a check that the variable is a number
 
     return GetValue("main"s,"random_string_length"s);
 }
 
+void FileConfigReader::SetOptions(password::PasswordBuilder &builder){
+
+    auto result = GetRandomStringLength();
+    if(result.has_value()){
+        builder.SetRandomStringLength(std::stoi(*result));
+    }else{
+        builder.SetRandomStringLength(0);
+    }
+
+}
+
 /**Get value */
-std::string FileConfigReader::GetValue(const std::string& section, const std::string& key) const{
-    std::string result = conf_reader_.GetValue(section.c_str(),key.c_str());  //add check if key is not set. If GetValue reurn nullptr
+std::optional<std::string> FileConfigReader::GetValue(const std::string& section, const std::string& key) const{
+    std::optional<std::string> result;
+
+    const char* value = conf_reader_.GetValue(section.c_str(),key.c_str());
+
+    if(value != nullptr){
+        result = value;
+    }
 
     return result;
 }
