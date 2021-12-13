@@ -21,8 +21,8 @@ std::optional<std::string> FileConfigReader::GetRandomStringLength() const{
 
 void FileConfigReader::SetOptions(password::PasswordBuilder &builder){
 
-    auto result = GetRandomStringLength();
-    if(result.has_value()){
+    const auto result = GetRandomStringLength();
+    if(result.has_value()&& std::stoi(*result) > 0) {
         builder.SetRandomStringLength(std::stoi(*result));
     }else{
         builder.SetRandomStringLength(0);

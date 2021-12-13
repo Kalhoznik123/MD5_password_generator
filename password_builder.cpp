@@ -32,9 +32,13 @@ size_t PasswordBuilder::GetRandomStringLength() const{
     return random_string_length_;
 }
 
+size_t PasswordBuilder::GetMD5HashSummLength() const{
+    return  MD5_HASH_SUMM_LENGTH;
+}
+
 std::string PasswordBuilder::GenerateAndShuffle(std::string salt) const{
 
-if(password_size_ > random_string_length_ + 32) // 32 - length of hash string;
+if(password_size_ > random_string_length_ + MD5_HASH_SUMM_LENGTH)
     return {};
 
 const std::string random_str = GenerateRandomString(random_string_length_);
