@@ -4,26 +4,34 @@ namespace  config_reader{
 FileConfigReader::FileConfigReader(std::string file)
 {
     conf_reader_.SetUnicode();
-
     rc_ =  conf_reader_.LoadFile(std::move(file).c_str());
 }
 
 bool FileConfigReader::IsLoaded() const{
-
     return !(rc_ < 0);
 }
 
-std::optional<std::string> FileConfigReader::GetRandomStringLength() const{
-    using namespace std::literals; //TODO: add a check that the variable is a number
+std::optional<int> FileConfigReader::GetRandomStringLength() const{
+    using namespace std::literals;
+    const auto result = GetValue("main"s,"random_string_length"s);
+    int value = 0;
+    try {
+        if(result.has_value())
+            value = std::stoi(*result);
+    }  catch (std::exception& ex) {
+        std::cout << "ERROR: invalid random_string_length value"<<std::endl; //TODO: add noraml loggin
+        std::abort();
+    }
 
-    return GetValue("main"s,"random_string_length"s);
+    return value;
 }
 
 void FileConfigReader::SetOptions(password::PasswordBuilder &builder){
 
     const auto result = GetRandomStringLength();
-    if(result.has_value()&& std::stoi(*result) > 0) {
-        builder.SetRandomStringLength(std::stoi(*result));
+
+    if(*result > 0) {
+        builder.SetRandomStringLength(*result);
     }else{
         builder.SetRandomStringLength(0);
     }

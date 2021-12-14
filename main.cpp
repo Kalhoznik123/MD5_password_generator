@@ -2,7 +2,7 @@
 #include "password_builder.h"
 #include <cassert>
 #include <iostream>
-/* пока длина пароля максиму 44 байта потому что 12 байтэто длина рандомно генерируемой строки
+/*
  * Add documentation for methods
  */
 
@@ -23,8 +23,8 @@ void TestOpenFile(){
 void TestReadRandomStringSize(){
     using namespace std::literals;
     config_reader::FileConfigReader conf_reader("config.ini"s);
-    std::string res = *conf_reader.GetRandomStringLength();
-    assert(res == "20"s);
+    int res = *conf_reader.GetRandomStringLength();
+    assert(res == 20);
     std::cout << "TestReadRandomStringSize is OK"s <<std::endl;
 
 }

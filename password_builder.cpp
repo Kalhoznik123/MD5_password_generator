@@ -43,7 +43,7 @@ if(password_size_ > random_string_length_ + MD5_HASH_SUMM_LENGTH)
 
 const std::string random_str = GenerateRandomString(random_string_length_);
 
-std::string result = random_str + md5(salt); // md5-hath equal 32 bit
+std::string result = random_str + md5(salt); // md5-hash equal 32 bit
 std::random_shuffle(result.begin(),result.end());
 
 return {result.begin(),result.begin() + password_size_};
