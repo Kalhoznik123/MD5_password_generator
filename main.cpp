@@ -39,13 +39,8 @@ void TestSetRandomStringSize(){
     std::cout << "TestSetRandomStringSize is OK"s <<std::endl;
 }
 void TestLogger(){
-<<<<<<< HEAD
     logger::ILogger* loger;
     logger::ConsoleLogger cl(std::cout);
-=======
-    ILogger* loger;
-    ConsoleLogger cl(std::cout);
->>>>>>> f7c94147d7ed8535352b9889680bd485e9d2925d
     loger = & cl;
     loger->SendMessage("test message\n");
 }
