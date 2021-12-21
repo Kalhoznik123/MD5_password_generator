@@ -1,5 +1,6 @@
 #include "FileConfigReader.h"
 #include "password_builder.h"
+#include "ILogger.h"
 #include <cassert>
 #include <iostream>
 /*
@@ -37,6 +38,13 @@ void TestSetRandomStringSize(){
     assert(builder.GetRandomStringLength() == 20);
     std::cout << "TestSetRandomStringSize is OK"s <<std::endl;
 }
+void TestLogger(){
+    ILogger* loger;
+    ConsoleLogger cl(std::cout);
+    loger = & cl;
+    loger->SendMessage("test message\n");
+}
+
 }
 
 using namespace std;
@@ -47,6 +55,7 @@ int main(int argc, char *argv[]){
 test::TestOpenFile();
 test::TestReadRandomStringSize();
 test::TestSetRandomStringSize();
+test::TestLogger();
 #endif
     if(argc != 3){
         std::cout << "Incorrect number of characters entered, enter the password length and salt"s << std::endl;
