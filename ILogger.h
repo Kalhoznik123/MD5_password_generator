@@ -1,10 +1,15 @@
 #ifndef ILOGGER_H
 #define ILOGGER_H
+<<<<<<< HEAD
 
 #include <string>
 
 namespace logger{
 
+=======
+#include <string>
+
+>>>>>>> f7c94147d7ed8535352b9889680bd485e9d2925d
 class ILogger
 {
 public:
@@ -16,6 +21,10 @@ public:
 
 };
 
+<<<<<<< HEAD
+=======
+#endif // ILOGGER_H
+>>>>>>> f7c94147d7ed8535352b9889680bd485e9d2925d
 
 class ConsoleLogger: public ILogger{
 public:
@@ -25,5 +34,8 @@ public:
 private:
    std::ostream& out_stream_;
 };
+<<<<<<< HEAD
 }
 #endif // ILOGGER_H
+=======
+>>>>>>> f7c94147d7ed8535352b9889680bd485e9d2925d
