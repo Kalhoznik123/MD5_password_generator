@@ -82,7 +82,7 @@ test::TestLogger();
     if(password.length()){
         std::cout << password <<std::endl;
     }else{
-        std::cout << "Password length is more than "<< pas_builder.GetRandomStringLength() + pas_builder.GetMD5HashSummLength() << " characters"s<<std::endl;
+        std::cout << "Password length is more than "<< pas_builder.GetRandomStringLength() + 32 << " characters"s<<std::endl; //32 - length of md5_hash_string
     }
 
 

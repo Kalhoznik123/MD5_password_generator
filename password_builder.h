@@ -14,7 +14,6 @@ public:
 private:
     size_t password_size_;
     size_t random_string_length_;
-    const size_t MD5_HASH_SUMM_LENGTH = 32;
     std::string GenerateAndShuffle(std::string salt)const;
 
 
