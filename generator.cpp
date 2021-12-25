@@ -1,11 +1,12 @@
 #include "generator.h"
+#include <unordered_set>
 
 bool IsForbiddenSymbol(char char_pos){
-    static const std::set<char> forbiden_char{'"','\'','(',')',',',':',';',' ','[',']','<','>'};
-    bool result = false;
-    if (forbiden_char.count(char_pos))
-        result = true;
-    return result;
+    static const std::unordered_set<char> forbiden_char{'"','\'','(',')',',',':',';',' ','[',']','<','>'};
+    if (forbiden_char.count(char_pos)){
+        return  true;
+    }
+    return false;
 }
 
 std::string GenerateRandomString(size_t size) {
