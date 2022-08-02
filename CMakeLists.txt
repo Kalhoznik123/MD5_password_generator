@@ -9,7 +9,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(GENERATOR_FILES generator.cpp generator.h)
 set(PASSWORD_BUILDER_FILES password_builder.cpp password_builder.h)
 set(FILEREADER_FILES FileConfigReader.cpp FileConfigReader.h)
-add_executable(pas_gen main.cpp ${GENERATOR_FILES} ${PASSWORD_BUILDER_FILES} ${FILEREADER_FILES}) #добавляем тарегет приложения
+set(TEST_FILES test.h)
+add_executable(pas_gen main.cpp ${GENERATOR_FILES} 
+                                ${PASSWORD_BUILDER_FILES} 
+                                ${FILEREADER_FILES}
+                                ${TEST_FILES}) #добавляем тарегет приложения
 add_subdirectory(md5lib)
 
 #target_compile_definitions(pas_gen PRIVATE ENABLE_TEST)#add definition to enable tests

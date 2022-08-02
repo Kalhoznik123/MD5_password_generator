@@ -1,7 +1,6 @@
 #include "FileConfigReader.h"
 #include "password_builder.h"
 #include <cassert>
-#include <iostream>
 /*
  * Add documentation for methods
  */
